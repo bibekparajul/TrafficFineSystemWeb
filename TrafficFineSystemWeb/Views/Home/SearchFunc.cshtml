@@ -1,0 +1,49 @@
+﻿@model IEnumerable<FineModel>
+
+<div class = "row pb-3">
+
+    <div class="row pt-4 text-end">
+                
+                @using (@Html.BeginForm("SearchFunc","Home", FormMethod.Get))
+                {
+                   @Html.TextBox("search") <input type="submit" value="search" />
+
+                }
+    </div>
+
+    @if(Model.Count() == 0)
+    {
+        <h5 style="color:red;">Fine Not Found!!!</h5>
+        <br />
+        <p>Please enter the valid License Number</p>
+    }
+
+    @foreach (var fineee in Model)
+    {
+        <div class="col-lg-3 col-md-6">
+            <div class="row p-2">
+                <div class="col-12 p-1" style="border:1px solid green; border-radius: 5px;">
+                    <div class="card">
+                        <img src="https://imgs.search.brave.com/GdhwTmSiI4DUYGbBjgOkkmRbUFtQHLAnJBe1_xUwgj4/rs:fit:632:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5H/cjdoY2pUY3FmNnZu/UUJrdjBrZmJnSGFG/aiZwaWQ9QXBp" class="card-img-top rounded" height="300px" width="250px"/>
+                        <div class=" card-body">
+                            <div class="pl-1">
+                                <p style="color:aqua"><b> ReferenceNumber:     @fineee.FineId</b></p>
+                                <p class="card-title text-info text-primary">License Number:   @fineee.LicenseNumber</p>
+
+                            </div>
+                            <div class="pl-1">
+                                <p>Fine Amount:<b>Rs: @fineee.Amount</b></p>
+                            </div>        
+                       </div>
+
+                    </div>
+                    <div >
+                        <a asp-action="Details" class="btn btn-primary form-control" asp-route-fineId = "@fineee.FineId">
+                        Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

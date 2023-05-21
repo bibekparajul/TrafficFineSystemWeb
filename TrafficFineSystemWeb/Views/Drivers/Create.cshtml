@@ -1,0 +1,55 @@
+﻿@model DriversModel
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary"> Create Drivers</h2>
+        <hr />
+        </div>
+        <div asp-validation-summary="All"></div>
+        <div class="mb-3">
+            <label asp-for="VechileNumber"></label>
+            <input asp-for="VechileNumber" class="form-control" /> 
+            <span asp-validation-for="VechileNumber" class="text-danger"></span> <!-- for name validation bcoz cant be empty-->
+        </div>
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" /> 
+            <span asp-validation-for="Name" class="text-danger"></span> <!-- for name validation bcoz cant be empty-->
+        </div>        
+      
+
+            <div class="mb-3">
+            <label asp-for="LicenseNumber"></label>
+            <input asp-for="LicenseNumber" class="form-control" />
+            <span asp-validation-for="LicenseNumber" class="text-danger"></span>
+            </div>
+                        
+            <div class="mb-3">
+            <label asp-for="VechineType"></label>
+            <input asp-for="VechineType" class="form-control" />
+            <span asp-validation-for="VechineType" class="text-danger"></span>
+            </div>
+                        
+            
+            <div class="mb-3">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+            <a asp-controller="Drivers" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                Back to the List
+            </a>
+
+
+    </div>
+</form>
+
+@section Scripts{
+@{
+<partial name = "_ValidationScriptsPartial"></partial>
+}
+}

@@ -1,0 +1,56 @@
+﻿
+@model IEnumerable<FineModel>
+
+
+<h1>Welcome Admin!!!</h1>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="@Url.Content("~/Images/Fine.jpg")" height="350px" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Total Fine  </h4>
+            <p class="card-text">
+
+                @Model.Count()
+            </p>
+            <a asp-controller="Fine" asp-action="Index" class="btn btn-primary">See Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card" alt="Card image">
+        <img src="@Url.Content("~/Images/TrafficPolice.jpg")" height="350px" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Total Number of Traffic</h4>
+            <p class="card-text">        
+                
+                @{
+                    var count = ViewBag.Traffic.Count;
+                    @count;
+                    
+                }</p>
+            <a asp-controller="Traffic" asp-action="Index" class="btn btn-primary">See Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="@Url.Content("~/Images/Drivers.jpg")" height="350px" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Total Number of Drivers</h4>
+            <p class="card-text">
+          
+                @{
+                    var countDriver = ViewBag.Drivers.Count;
+                    @countDriver;                  
+                }
+            </p>
+            <a asp-controller="Drivers" asp-action="Index" class="btn btn-primary">See Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </div>
