@@ -25,6 +25,21 @@ namespace TrafficFineSystemWeb.Controllers
             return View();
         }
 
+        public IActionResult IndexFine()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult ButtonClick()
+        {
+            // Perform any necessary operations here
+
+            // Redirect to the OtherAction method
+            return RedirectToAction("IndexFine");
+        }
+
         [HttpPost]
        
         public IActionResult SeeFine(int fineId)
@@ -49,6 +64,8 @@ namespace TrafficFineSystemWeb.Controllers
             return View(fineFromDb);
 
         }
+
+
 
         [HttpPost]
         public IActionResult ViewAdmin()

@@ -28,11 +28,7 @@ namespace TrafficFineSystemWeb.Controllers
 
         public IActionResult Details(int fineId)
         {
-            //FineModel fineobj = new()
-            //{
-            //    FineId = fineId,
-            //    //DriversAdd = _unitOfWork.DriversAdd.GetFirstorDefault(u => u.Id == fineId)
-            //};
+         
 
             var fineFromDb = _unitOfWork.FineAdd.GetFirstorDefault(u => u.FineId == fineId, includeProperties: "DriversAdd,TrafficAdd");
 

@@ -82,29 +82,29 @@ namespace TrafficFineSystemWeb.Controllers
                 //smpt email sending after creating the ticket
 
 
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                string fromMail = "trafficfine11@gmail.com";
-                string fromPassword = "etdytbbrihvhkzbo";
-                using (var message = new MailMessage())
-                {
+                //string wwwRootPath = _hostEnvironment.WebRootPath;
+                //string fromMail = "trafficfine11@gmail.com";
+                //string fromPassword = "etdytbbrihvhkzbo";
+                //using (var message = new MailMessage())
+                //{
 
-                    message.From = new MailAddress(fromMail);
-                    //message.To.Add(new MailAddress("codebbek11@gmail.com"));
-                    message.Subject = "This is message from";
-                    message.Body = "Your fine ID is: " + obj.Fine.FineId + "Fine Type is:" +
-                        obj.Fine.FineType;
+                //    message.From = new MailAddress(fromMail);
+                //    message.To.Add(new MailAddress("codebbek11@gmail.com"));
+                //    message.Subject = "This is message from";
+                //    message.Body = "Your fine ID is: " + obj.Fine.FineId + "Fine Type is:" +
+                //        obj.Fine.FineType;
 
-                    using (var smtp = new SmtpClient("smtp.gmail.com")
-                    {
-                        Port = 587,
-                        Credentials = new NetworkCredential(fromMail, fromPassword),
-                        EnableSsl = true,
+                //    using (var smtp = new SmtpClient("smtp.gmail.com")
+                //    {
+                //        Port = 587,
+                //        Credentials = new NetworkCredential(fromMail, fromPassword),
+                //        EnableSsl = true,
 
-                    })
+                //    })
 
-                        smtp.Send(message);
+                //        smtp.Send(message);
 
-                }
+                //}
 
 
                 //smtp ticket created
