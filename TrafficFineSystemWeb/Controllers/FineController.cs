@@ -125,6 +125,39 @@ namespace TrafficFineSystemWeb.Controllers
                 _unitOfWork.Save();        //    
                 TempData["success"] = "Fine Created Successfully";
 
+
+                //smpt email sending after creating the ticket
+                var fineFromDb = _unitOfWork.FineAdd.GetFirstorDefault(u => u.FineId == obj.Fine.FineId, includeProperties: "DriversAdd,TrafficAdd");
+
+                string fromMail = "trafficfine11@gmail.com";
+                string fromPassword = "etdytbbrihvhkzbo";
+                string toMail = fineFromDb.DriversAdd.Email;
+
+                using (var message = new MailMessage())
+                {
+
+                    message.From = new MailAddress(fromMail);
+                    //message.To.Add(new MailAddress("samanraut120@gmail.com"));
+                    message.To.Add(new MailAddress(toMail));
+                    message.Subject = "This is message from";
+                    message.Body = "Your fine ID is: " + obj.Fine.FineId + "Fine Type is:" +
+                        obj.Fine.FineType;
+
+                    using (var smtp = new SmtpClient("smtp.gmail.com")
+                    {
+                        Port = 587,
+                        Credentials = new NetworkCredential(fromMail, fromPassword),
+                        EnableSsl = true,
+
+                    })
+
+                        smtp.Send(message);
+
+                }
+
+
+                //smtp ticket created
+
                 return RedirectToAction("Index");
             }
             return View(obj);

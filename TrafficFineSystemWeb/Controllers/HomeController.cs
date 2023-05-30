@@ -15,7 +15,6 @@ namespace TrafficFineSystemWeb.Controllers
             _logger = logger;
             _unitOfWork = unitOfWork;
         }
-
         public IActionResult Index()
         {
             ViewBag.Drivers = _unitOfWork.DriversAdd.GetAll();
@@ -29,12 +28,10 @@ namespace TrafficFineSystemWeb.Controllers
         public IActionResult Details(int fineId)
         {
          
-
             var fineFromDb = _unitOfWork.FineAdd.GetFirstorDefault(u => u.FineId == fineId, includeProperties: "DriversAdd,TrafficAdd");
 
             return View(fineFromDb);
         }
-
 
         //search here
 
@@ -106,30 +103,6 @@ namespace TrafficFineSystemWeb.Controllers
         {
             return View();
         }
-
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        ////[/*Authorize*/]
-        //public IActionResult Details(FineModel finepay)
-        //{
-        //    //this claim helps to find out whether user is login or not
-        //    var claimsIdentity = (ClaimsIdentity)User.Identity;
-        //    var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-        //    finepay.ApplicationUserId = claim.Value;
-
-        //    ShoppingCart cartFromDB = _unitOfWork.ShoppingCart.GetFirstorDefault(
-        //      u => u.ApplicationUserId == claim.Value && u.ProductId == shoppingCart.ProductId);
-
-
-
-        //    _unitOfWork.Save();
-
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-
-
 
 
         public IActionResult Privacy()

@@ -45,20 +45,6 @@ namespace TrafficFineSystemWeb.Controllers
         public IActionResult SeeFine(int fineId)
         {
 
-            //if (FineId == null || FineId == 0)
-            //{
-            //    return NotFound();
-            //}
-            //var fineFromDb = _db.FineModels.Find(FineId);
-            //if (fineFromDb == null)
-            //{
-            //    return NotFound();
-            //}
-            //return View(fineFromDb);
-
-
-            //using unitofwork concept
-
             var fineFromDb = _unitOfWork.FineAdd.GetFirstorDefault(u => u.FineId == fineId, includeProperties: "DriversAdd,TrafficAdd");
 
             return View(fineFromDb);

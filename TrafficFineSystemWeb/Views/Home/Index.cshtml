@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<FineModel>
 
 <div class = "row pb-3">
+
+
+        @if (!User.IsInRole("Admin"))
+    {
         <div class="row pt-4 text-end">
             <form asp-action="SearchFunc" method="get" >
                 <label>
@@ -12,7 +16,72 @@
                 }
             </label>
         </form>
-    </div>  
+    </div>
+    }
+
+
+     @if (User.IsInRole("Admin"))
+    {
+        <h1>Hello This is Admin View</h1>
+             <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <img src="@Url.Content("~/Images/Fine.jpg")" height="350px" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Total Fine  </h4>
+            <p class="card-text">
+
+                @Model.Count()
+            </p>
+            <a asp-controller="Fine" asp-action="Index" class="btn btn-primary">See Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card" alt="Card image">
+        <img src="@Url.Content("~/Images/TrafficPolice.jpg")" height="350px" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Total Number of Traffic</h4>
+            <p class="card-text">This is the second card.</p>
+            <a asp-controller="Traffic" asp-action="Index" class="btn btn-primary">See Details</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <img src="@Url.Content("~/Images/Drivers.jpg")" height="350px" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">Total Number of Drivers</h4>
+            <p class="card-text">
+                
+@*                @foreach (var item in ViewBag.Drivers)
+                {
+                   var count = ViewBag.Drivers.Count;
+                    @count;                    
+                }*@
+
+
+                @{
+                    var count = ViewBag.Drivers.Count;
+                        @count;
+                    
+                }
+            </p>
+            <a asp-controller="Drivers" asp-action="Index" class="btn btn-primary">See Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+        </div>
+    }
+
+    else
+    {
+        
+    
+
     @foreach (var fineee in Model)
     {
         <div class="col-lg-3 col-md-6">
@@ -36,13 +105,13 @@
                            
                             <a asp-action="Details" class="btn btn-primary form-control" asp-route-fineId = "@fineee.FineId">
                         Details
-                            </a>
-                          
+                            </a>                         
                            
                         </div>
                 </div>
             </div>
         </div>
+    }
     }
     
 </div>

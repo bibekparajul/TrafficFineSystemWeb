@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TrafficFineSystemWeb.Data;
 using TrafficFineSystemWeb.Repository;
@@ -12,8 +13,21 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+
+builder.Services.Configure<IdentityOptions>(op =>
+{
+    op.Password.RequireNonAlphanumeric = false;
+    op.Password.RequiredLength = 3;
+    op.Password.RequireDigit = false;
+    op.Password.RequireUppercase = false;
+    op.Password.RequireLowercase = false;
+});
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
@@ -33,6 +47,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 
 app.UseAuthorization();
 app.MapRazorPages();
@@ -40,6 +55,6 @@ app.MapRazorPages();
 app.MapControllerRoute(
 
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();
