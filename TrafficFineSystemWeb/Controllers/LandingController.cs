@@ -45,11 +45,19 @@ namespace TrafficFineSystemWeb.Controllers
         public IActionResult SeeFine(int fineId)
         {
 
+
+
             var fineFromDb = _unitOfWork.FineAdd.GetFirstorDefault(u => u.FineId == fineId, includeProperties: "DriversAdd,TrafficAdd");
 
             return View(fineFromDb);
 
         }
+
+        public IActionResult Success()
+        {
+            return View();
+        }
+
 
 
 

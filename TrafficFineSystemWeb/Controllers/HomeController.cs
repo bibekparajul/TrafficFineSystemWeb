@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Stripe.Checkout;
 using System.Diagnostics;
 using TrafficFineSystemWeb.Models;
 using TrafficFineSystemWeb.Repository.IRepository;
@@ -51,50 +52,50 @@ namespace TrafficFineSystemWeb.Controllers
         //payment here
 
 
-        //public IActionResult Pay()
-        //{
+        public IActionResult Pay()
+        {
 
 
-        //    var domain = "https://localhost:7185/";
-        //    var options = new SessionCreateOptions
-        //    {
-        //        PaymentMethodTypes = new List<string>
-        //        {
-        //            "card",
-        //        },
-        //        LineItems = new List<SessionLineItemOptions>(),
+            var domain = "https://localhost:7182/";
+            var options = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string>
+                {
+                    "card",
+                },
+                LineItems = new List<SessionLineItemOptions>(),
 
-        //        Mode = "payment",
-        //        SuccessUrl = domain + $"Home/success",
-        //        CancelUrl = domain + $"Home/cancel",
-        //    };
+                Mode = "payment",
+                SuccessUrl = domain + $"Landing/success",
+                CancelUrl = domain + $"Home/cancel",
+            };
 
 
-        //    var sessionLineItem = new SessionLineItemOptions
-        //    {
-        //        PriceData = new SessionLineItemPriceDataOptions
-        //        {
-        //            UnitAmount = (long)(100),
-        //            Currency = "usd",
-        //            ProductData = new SessionLineItemPriceDataProductDataOptions
-        //            {
-        //                Name = "Fine",
-        //            },
-        //        },
-        //        Quantity = 1,
-        //    };
-        //    options.LineItems.Add(sessionLineItem);
+            var sessionLineItem = new SessionLineItemOptions
+            {
+                PriceData = new SessionLineItemPriceDataOptions
+                {
+                    UnitAmount = (long)(100),
+                    Currency = "usd",
+                    ProductData = new SessionLineItemPriceDataProductDataOptions
+                    {
+                        Name = "Fine",
+                    },
+                },
+                Quantity = 1,
+            };
+            options.LineItems.Add(sessionLineItem);
 
-        //    //  }
+            //  }
 
-        //    var service = new SessionService();
-        //    Session session = service.Create(options);
-        //    _unitOfWork.Save();
+            var service = new SessionService();
+            Session session = service.Create(options);
+            _unitOfWork.Save();
 
-        //    Response.Headers.Add("Location", session.Url);
-        //    return new StatusCodeResult(303);
+            Response.Headers.Add("Location", session.Url);
+            return new StatusCodeResult(303);
 
-        //}
+        }
 
 
         //payment done

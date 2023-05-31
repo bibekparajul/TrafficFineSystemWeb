@@ -79,36 +79,6 @@ namespace TrafficFineSystemWeb.Controllers
             if (ModelState.IsValid)
             {
 
-                //smpt email sending after creating the ticket
-
-
-                //string wwwRootPath = _hostEnvironment.WebRootPath;
-                //string fromMail = "trafficfine11@gmail.com";
-                //string fromPassword = "etdytbbrihvhkzbo";
-                //using (var message = new MailMessage())
-                //{
-
-                //    message.From = new MailAddress(fromMail);
-                //    message.To.Add(new MailAddress("codebbek11@gmail.com"));
-                //    message.Subject = "This is message from";
-                //    message.Body = "Your fine ID is: " + obj.Fine.FineId + "Fine Type is:" +
-                //        obj.Fine.FineType;
-
-                //    using (var smtp = new SmtpClient("smtp.gmail.com")
-                //    {
-                //        Port = 587,
-                //        Credentials = new NetworkCredential(fromMail, fromPassword),
-                //        EnableSsl = true,
-
-                //    })
-
-                //        smtp.Send(message);
-
-                //}
-
-
-                //smtp ticket created
-
 
                 if (obj.Fine.FineId == 0)
                 {
@@ -139,9 +109,9 @@ namespace TrafficFineSystemWeb.Controllers
                     message.From = new MailAddress(fromMail);
                     //message.To.Add(new MailAddress("samanraut120@gmail.com"));
                     message.To.Add(new MailAddress(toMail));
-                    message.Subject = "This is message from";
-                    message.Body = "Your fine ID is: " + obj.Fine.FineId + "Fine Type is:" +
-                        obj.Fine.FineType;
+                    message.Subject = "This is message contains your fine ticket ID and Fine Type";
+                    message.Body = " Fine ID : " + obj.Fine.FineId + "\nFine Type : " +
+                        obj.Fine.FineType +"\n\n\n For Payment You Need To Visit the Site"+"\n\nThankYou!";
 
                     using (var smtp = new SmtpClient("smtp.gmail.com")
                     {

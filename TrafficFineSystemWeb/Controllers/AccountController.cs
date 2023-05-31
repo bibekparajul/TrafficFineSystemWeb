@@ -72,6 +72,7 @@ namespace TrafficFineSystemWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
+
             IdentityUser u = await _userManager.FindByEmailAsync(model.Email);
             if (u != null)
             {
@@ -83,6 +84,7 @@ namespace TrafficFineSystemWeb.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
+
 
             }
 
