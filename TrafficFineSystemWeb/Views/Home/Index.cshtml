@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<FineModel>
 
+
 <div class = "row pb-3">
 
 
@@ -7,7 +8,7 @@
     {
         <div class="row pt-4 text-end">
             <form asp-action="SearchFunc" method="get" >
-                <label>
+                <label class="m-4">
                     <b> Search:</b>
 
                     @using (@Html.BeginForm("SearchFunc", "Home", FormMethod.Get))
@@ -58,7 +59,7 @@
 
                 @{
                     var count = ViewBag.Drivers.Count;
-                        @count;
+                                @count;
                     
                 }
             </p>
@@ -76,17 +77,18 @@
         
     
 
+        <h1>Fine List</h1>
     @foreach (var fineee in Model)
     {
         <div class="col-lg-3 col-md-6">
             <div class="row p-2">
                 <div class="col-12 p-1" style="border:1px solid green; border-radius: 5px;">
                     <div class="card">
-                        <img src="https://imgs.search.brave.com/GdhwTmSiI4DUYGbBjgOkkmRbUFtQHLAnJBe1_xUwgj4/rs:fit:632:225:1/g:ce/aHR0cHM6Ly90c2Ux/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5H/cjdoY2pUY3FmNnZu/UUJrdjBrZmJnSGFG/aiZwaWQ9QXBp" class="card-img-top rounded" height="300px" width="250px"/>
+                        <img src="https://nepalinerd.com/wp-content/uploads/2023/01/Traffic-Police-Nepals-Fine-Chit.webp" class="card-img-top rounded" height="300px" width="250px"/>
                         <div class=" card-body">
                             <div class="pl-1">
-                                <p style="color:aqua"><b> ReferenceNumber:     @fineee.FineId</b></p>
-                                <p class="card-title text-info text-primary">License Number:   @fineee.LicenseNumber</p>
+                                <h5 style="color:black"><b> ReferenceNumber:     @fineee.FineId</b></h5>
+                                <h6 class="card-title text-info text-primary">License Number:   @fineee.LicenseNumber</h6>
 
                             </div>
                             <div class="pl-1">

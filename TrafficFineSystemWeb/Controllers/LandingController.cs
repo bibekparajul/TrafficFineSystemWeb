@@ -33,9 +33,9 @@ namespace TrafficFineSystemWeb.Controllers
 
         [HttpPost]
         public ActionResult ButtonClick()
+       
         {
-            // Perform any necessary operations here
-
+    
             // Redirect to the OtherAction method
             return RedirectToAction("IndexFine");
         }

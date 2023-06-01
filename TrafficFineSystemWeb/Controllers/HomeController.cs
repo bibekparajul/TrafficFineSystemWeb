@@ -2,6 +2,7 @@
 using Stripe.Checkout;
 using System.Diagnostics;
 using TrafficFineSystemWeb.Models;
+using TrafficFineSystemWeb.Models.ViewModel;
 using TrafficFineSystemWeb.Repository.IRepository;
 
 namespace TrafficFineSystemWeb.Controllers
@@ -55,7 +56,6 @@ namespace TrafficFineSystemWeb.Controllers
         public IActionResult Pay()
         {
 
-
             var domain = "https://localhost:7182/";
             var options = new SessionCreateOptions
             {
@@ -75,6 +75,7 @@ namespace TrafficFineSystemWeb.Controllers
             {
                 PriceData = new SessionLineItemPriceDataOptions
                 {
+                    //UnitAmount = long.Parse(obj.Fine.Amount),
                     UnitAmount = (long)(100),
                     Currency = "usd",
                     ProductData = new SessionLineItemPriceDataProductDataOptions

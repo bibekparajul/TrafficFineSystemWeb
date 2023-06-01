@@ -66,6 +66,7 @@ namespace TrafficFineSystemWeb.Controllers
 
         public IActionResult Login()
         {
+      
             return View();
         }
 
@@ -86,15 +87,17 @@ namespace TrafficFineSystemWeb.Controllers
                 }
 
 
+
             }
-
-
+            TempData["error"] = "Please enter the valid Email and Password";
             return View(model);
         }
 
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+            TempData["success"] = "User Logged Successfully";
+
             return RedirectToAction("Login", "Account");
 
         }

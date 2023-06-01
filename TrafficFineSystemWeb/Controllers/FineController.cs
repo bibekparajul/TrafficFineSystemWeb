@@ -73,7 +73,7 @@ namespace TrafficFineSystemWeb.Controllers
         //POST
         [HttpPost]                 //used to handle the http request
         [ValidateAntiForgeryToken] //used to prevent the cross site request forgery attack
-        public IActionResult Upsert(FineVM obj/*,FineModel objs*/)
+        public IActionResult Upsert(FineVM obj)
         {
 
             if (ModelState.IsValid)

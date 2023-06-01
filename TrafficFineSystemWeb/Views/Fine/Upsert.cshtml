@@ -1,5 +1,13 @@
 ﻿@model TrafficFineSystemWeb.Models.ViewModel.FineVM
 
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+
 <form method="post" asp-action="Upsert" enctype="multipart/form-data">
     <input asp-for="Fine.FineId" hidden />
 
@@ -12,12 +20,6 @@
         <hr />
         </div>
         <div asp-validation-summary="All"></div>
-@*       <div class="mb-3">
-            <label asp-for="Fine.FineId"></label>
-            <input asp-for="Fine.FineId" class="form-control" /> 
-            <span asp-validation-for="Fine.FineId" class="text-danger"></span> <!-- for name validation bcoz cant be empty-->
-        </div> 
-*@        
         <div class="mb-3">
             <label asp-for="Fine.VehicleNumber"></label>
             <textarea asp-for="Fine.VehicleNumber" rows="3" class="form-control" ></textarea> 
@@ -56,18 +58,10 @@
             <select asp-for="Fine.TrafficId" asp-items="@Model.TrafficList" class="form-select">
                 <option disabled selected>-Select Any Driver-</option>
             </select>
-            <span asp-validation-for="Fine.TrafficId" class="text-danger"></span> <!-- for name validation bcoz cant be empty-->
+            <span asp-validation-for="Fine.TrafficId" class="text-danger"></span> 
+            <!-- for name validation bcoz cant be empty-->
         </div>        
         
-        
-@*        <div class="mb-3 col-6">
-            <label asp-for="Fine.DriverId"></label>
-            <select asp-for="Fine.DriverId" asp-items="@Model.DriverList" class="form-select">
-                <option disabled selected>-Select Any Driver-</option>
-            </select>
-            <span asp-validation-for="Fine.DriverId" class="text-danger"></span> <!-- for name validation bcoz cant be empty-->
-        </div>*@
-
 
          
             <div class="col-12">

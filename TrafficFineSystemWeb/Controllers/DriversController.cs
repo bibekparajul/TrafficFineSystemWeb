@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TrafficFineSystemWeb.Data;
 using TrafficFineSystemWeb.Models;
 using TrafficFineSystemWeb.Repository.IRepository;
 
@@ -8,7 +9,7 @@ namespace TrafficFineSystemWeb.Controllers
     {
 
         private readonly IUnitOfWork _unitOfWork; //
-
+        private readonly ApplicationDbContext _context;
         public DriversController(IUnitOfWork unitOfWork)    //
         {
             _unitOfWork = unitOfWork;
@@ -27,6 +28,7 @@ namespace TrafficFineSystemWeb.Controllers
             return View();
         }
 
+
         //POST
         [HttpPost]                 //used to handle the http request
         [ValidateAntiForgeryToken] //used to prevent the cross site request forgery attack
@@ -38,8 +40,11 @@ namespace TrafficFineSystemWeb.Controllers
             {
                 ModelState.AddModelError("name", "Name and License number cannot be same");
             }
+            var check = _unitOfWork.DriversAdd.GetAll(x => x.VechileNumber == obj.VechileNumber);
+         
+
             //server side validation because name cannot be empty
-            if (ModelState.IsValid)
+            if (ModelState.IsValid )
             {
 
                 _unitOfWork.DriversAdd.Add(obj);    //
@@ -81,7 +86,6 @@ namespace TrafficFineSystemWeb.Controllers
             //server side validation because name cannot be empty
             if (ModelState.IsValid)
             {
-
                 _unitOfWork.DriversAdd.Update(obj);   //
                 _unitOfWork.Save();        //    
                 TempData["success"] = "Driver Updated Successfully";
@@ -117,8 +121,8 @@ namespace TrafficFineSystemWeb.Controllers
                 return NotFound();
             }
 
-            _unitOfWork.DriversAdd.Remove(obj);    //
-            _unitOfWork.Save();         //
+            _unitOfWork.DriversAdd.Remove(obj);    
+            _unitOfWork.Save();         
             TempData["success"] = "Drivers Deleted Successfully";
 
             return RedirectToAction("Index");
