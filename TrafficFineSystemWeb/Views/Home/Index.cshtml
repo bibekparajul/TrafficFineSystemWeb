@@ -23,7 +23,7 @@
 
      @if (User.IsInRole("Admin"))
     {
-        <h1>Hello This is Admin View</h1>
+        <h1>Welcome Admin</h1>
              <div class="container-fluid mt-3">
     <div class="row">
       <div class="col-md-4">
@@ -44,7 +44,14 @@
         <img src="@Url.Content("~/Images/TrafficPolice.jpg")" height="350px" alt="Card image">
           <div class="card-body">
             <h4 class="card-title">Total Number of Traffic</h4>
-            <p class="card-text">This is the second card.</p>
+            <p class="card-text">
+                 @{
+                    var countt = ViewBag.Drivers.Count;
+                                @countt;
+                    
+                }
+
+            </p>
             <a asp-controller="Traffic" asp-action="Index" class="btn btn-primary">See Details</a>
           </div>
         </div>

@@ -47,8 +47,10 @@
 
         <div class="mb-3 col-6">
             <label asp-for="Fine.DriverId"></label>
-            <select asp-for="Fine.DriverId" asp-items="@Model.DriverList" class="form-select">
+            <select asp-for="Fine.DriverId" class="form-select" asp-items="@Model.DriverList" onchange="FormAutoFill(this.value)">
+                     
                 <option disabled selected>-Select Any Driver-</option>
+                        
             </select>
             <span asp-validation-for="Fine.DriverId" class="text-danger"></span> <!-- for name validation bcoz cant be empty-->
         </div>      
@@ -78,6 +80,7 @@
                 Back to the List
             </a>
             </div>
+            
 
 
     </div>
@@ -87,9 +90,31 @@
 
 </form>
 
+
 @section Scripts{
 @{
     <partial name = "_ValidationScriptsPartial"></partial>
+    <script>
+        
+
+            function FormAutoFill(vehiclenumber) {
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function () {
+
+                    var data = JSON.parse(xhttp.responseText)
+                    var test = data[0]
+
+                    document.getElementById("Fine_VehicleNumber").value = test["vechileNumber"]
+                    document.getElementById("Fine_LicenseNumber").value = test["licenseNumber"]
+                    
+
+                }
+                xhttp.open("GET", "/api/values/" + vehiclenumber, true)
+                xhttp.send();
+            }
+    
+    
+    </script>
 }
 
 

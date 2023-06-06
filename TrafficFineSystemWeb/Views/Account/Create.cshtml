@@ -5,12 +5,11 @@
       List<SelectListItem> roles = (List<SelectListItem>)ViewBag.Roles;
 }
 
-<h1>Create</h1>
-<h6>User</h6>
+<h3 class="text-center">Register!</h3>
 <hr />
 
     <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -52,12 +51,19 @@
             </div>       
             
 
+  
 
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-secondary" />
             </div>
         </form>
     </div>
+        <div class="col-md-6">
+              <img src="@Url.Content("~/Images/loginPage.jpg")" class="img-fluid no-gutters" alt="home">
+
+           </div>
+
     </div>
 
 @section Scripts {

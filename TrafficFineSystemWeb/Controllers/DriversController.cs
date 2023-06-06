@@ -40,8 +40,20 @@ namespace TrafficFineSystemWeb.Controllers
             {
                 ModelState.AddModelError("name", "Name and License number cannot be same");
             }
-            var check = _unitOfWork.DriversAdd.GetAll(x => x.VechileNumber == obj.VechileNumber);
-         
+            var checkVehicleNum = _unitOfWork.DriversAdd.GetFirstorDefault(x => x.VechileNumber == obj.VechileNumber);
+            if (checkVehicleNum != null)
+            {
+                ModelState.AddModelError("name", "Vehicle Number ALready exists");
+
+            }
+
+            var checkLicenseNum = _unitOfWork.DriversAdd.GetFirstorDefault(x=> x.LicenseNumber == obj.LicenseNumber);
+
+            if (checkLicenseNum!=null)
+            {
+                ModelState.AddModelError("licensenumber", "License Number Already exists");
+
+            }
 
             //server side validation because name cannot be empty
             if (ModelState.IsValid )

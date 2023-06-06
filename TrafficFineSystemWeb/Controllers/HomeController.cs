@@ -20,7 +20,7 @@ namespace TrafficFineSystemWeb.Controllers
         public IActionResult Index()
         {
             ViewBag.Drivers = _unitOfWork.DriversAdd.GetAll();
-            //var count = ViewBag.Drivers.Count;
+            ViewBag.Traffic = _unitOfWork.TrafficAdd.GetAll();
             IEnumerable<FineModel> fineList = _unitOfWork.FineAdd.GetAll(includeProperties: "DriversAdd,TrafficAdd");
             return View(fineList);
         }
