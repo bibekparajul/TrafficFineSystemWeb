@@ -41,6 +41,18 @@ namespace TrafficFineSystemWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(UserModel user)
         {
+
+            var existingUser = await _userManager.FindByNameAsync(user.UserName);
+            var existingEmail = await _userManager.FindByEmailAsync(user.Email);
+            if (existingUser != null || existingEmail!=null)
+            {
+                ModelState.AddModelError("", "User already exists.");
+                // You can return an error view or perform any other action to handle the error.
+                // For example, you can redirect to a specific view and display the error message.
+                return View(user);
+            }
+
+
             IdentityUser iUser = new IdentityUser
             {
                 UserName = user.UserName,
@@ -53,6 +65,9 @@ namespace TrafficFineSystemWeb.Controllers
                 await _userManager.AddToRoleAsync(iUser, user.Role);
                 return Redirect("/");
             }
+      
+
+
             var roles = _roleManager.Roles.Select(x => new SelectListItem
             {
                 Value = x.Name,

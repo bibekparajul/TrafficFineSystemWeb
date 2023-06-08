@@ -42,6 +42,11 @@ namespace TrafficFineSystemWeb.Controllers
         {
             IEnumerable<FineModel> fineList = _unitOfWork.FineAdd.GetAll(includeProperties: "DriversAdd,TrafficAdd");
 
+            if(fineList == null)
+            {
+                return NotFound();
+            }
+
             return View(fineList.Where(x => x.LicenseNumber.Contains(search) || search == null).ToList());
         }
 

@@ -55,6 +55,8 @@ namespace TrafficFineSystemWeb.Controllers
 
             }
 
+
+
             //server side validation because name cannot be empty
             if (ModelState.IsValid )
             {

@@ -8,7 +8,7 @@
         </div>
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="mb-3">
-            <label asp-for="VechileNumber"></label>
+            <label>Vehicle Number</label>
             <input asp-for="VechileNumber" class="form-control" /> 
             <span asp-validation-for="Name" class="text-danger"></span>
             <span asp-validation-for="VechileNumber" class="text-danger"></span> <!-- for name validation bcoz cant be empty-->
@@ -20,13 +20,13 @@
       
 
             <div class="mb-3">
-            <label asp-for="LicenseNumber"></label>
+            <label>LicenseNumber</label>
             <input asp-for="LicenseNumber" class="form-control" />
             <span asp-validation-for="LicenseNumber" class="text-danger"></span>
             </div>
                         
             <div class="mb-3">
-            <label asp-for="VechineType"></label>
+            <label>Vehicle Type</label>
             <input asp-for="VechineType" class="form-control" />
             <span asp-validation-for="VechineType" class="text-danger"></span>
             </div>

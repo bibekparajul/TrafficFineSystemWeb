@@ -46,7 +46,7 @@
 
 
         <div class="mb-3 col-6">
-            <label asp-for="Fine.DriverId"></label>
+            <label>Drivers Name</label>
             <select asp-for="Fine.DriverId" class="form-select" asp-items="@Model.DriverList" onchange="FormAutoFill(this.value)">
                      
                 <option disabled selected>-Select Any Driver-</option>
@@ -56,7 +56,7 @@
         </div>      
         
         <div class="mb-3 col-6">
-            <label asp-for="Fine.TrafficId"></label>
+            <label>Traffic Name</label>
             <select asp-for="Fine.TrafficId" asp-items="@Model.TrafficList" class="form-select">
                 <option disabled selected>-Select Any Driver-</option>
             </select>

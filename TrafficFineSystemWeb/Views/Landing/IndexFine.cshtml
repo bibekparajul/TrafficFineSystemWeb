@@ -1,5 +1,10 @@
 ﻿
 @model FineModel
+
+@{
+    Layout = null;
+}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -64,16 +69,15 @@
   <body>
 
 
-
     <section class="Form my-4 mx-5">
-        <div class="container">
+        <div class="container ">
             <div class="row">
                 <div class="col-lg-5">
                     <img src="@Url.Content("~/Images/finedetails.jpg")" class="img-fluid no-gutters" alt="home">
                 </div>
                 <div class="col-lg-7 px-5 pt-5" >
                     <h1>Welcome! </h1>
-                    <h3>Enter FineId and Vehicle Number to See the Fine Detail</h3>
+                    <h4>Enter FineId and Vehicle Number to See the Fine Detail</h4>
                     <form asp-action="SeeFine" method="post">
                         <div class="form-row">
                             <div class="col-lg-7">

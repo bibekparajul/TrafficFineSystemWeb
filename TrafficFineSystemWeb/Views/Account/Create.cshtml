@@ -5,6 +5,23 @@
       List<SelectListItem> roles = (List<SelectListItem>)ViewBag.Roles;
 }
 
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <ul>
+            @foreach (var modelState in ViewData.ModelState.Values)
+            {
+                foreach (var error in modelState.Errors)
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            }
+        </ul>
+    </div>
+}
+
+
 <h3 class="text-center">Register!</h3>
 <hr />
 
