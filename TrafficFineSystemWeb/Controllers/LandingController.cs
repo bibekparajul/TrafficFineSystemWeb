@@ -49,6 +49,12 @@ namespace TrafficFineSystemWeb.Controllers
 
             var fineFromDb = _unitOfWork.FineAdd.GetFirstorDefault(u => u.FineId == fineId, includeProperties: "DriversAdd,TrafficAdd");
 
+            if (fineFromDb == null)
+            {
+                TempData["ErrorMessage"] = "Fine Id doesn't exists";
+                return RedirectToAction("IndexFine", "Landing"); // Redirect to another action or view
+            }
+
             return View(fineFromDb);
 
         }

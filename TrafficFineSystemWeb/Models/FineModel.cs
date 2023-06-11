@@ -33,5 +33,7 @@ namespace TrafficFineSystemWeb.Models
         [ValidateNever]
 
         public TrafficModel TrafficAdd { get; set; }
+
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
     }
 }

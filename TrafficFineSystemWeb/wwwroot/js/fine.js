@@ -10,18 +10,19 @@ function loadDataTable() {
             "url": "/Fine/GetAll"
         },
         "columns": [
-            { "data": "fineId", "width": "10%" },
+            { "data": "fineId", "width": "5%" },
             { "data": "vehicleNumber", "width": "10%" },
-            { "data": "fineType", "width": "10%" },
+            { "data": "fineType", "width": "5%" },
             { "data": "licenseNumber", "width": "10%" },
             { "data": "amount", "width": "10%" },
             { "data": "driversAdd.name", "width": "10%" },
             { "data": "trafficAdd.name", "width": "10%" },
+            { "data": "createdDate", "width": "10%" },
             {
                 "data": "fineId",
                 "render": function (data) {
                     return `
-                    <div class="w-75 btn-group" role="group">
+                    <div class="w-25 btn-group" role="group">
 
                   <a href = "/Fine/Upsert?fineId=${data}"
                   class="btn btn-primary mx-2">
@@ -34,7 +35,7 @@ function loadDataTable() {
                     </div>
                     `
                 },
-                "width": "40%",
+                "width": "20%",
             },
         ]
     });
