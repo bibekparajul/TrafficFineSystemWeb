@@ -41,17 +41,15 @@ namespace TrafficFineSystemWeb.Controllers
         }
 
         [HttpPost]
-       
-        public IActionResult SeeFine(int fineId)
+
+        public IActionResult SeeFine(int fineId, string VehicleNumber)
         {
 
 
-
-            var fineFromDb = _unitOfWork.FineAdd.GetFirstorDefault(u => u.FineId == fineId, includeProperties: "DriversAdd,TrafficAdd");
-
+            var fineFromDb = _unitOfWork.FineAdd.GetFirstorDefault(u => u.FineId == fineId && u.VehicleNumber == VehicleNumber, includeProperties: "DriversAdd,TrafficAdd");
             if (fineFromDb == null)
             {
-                TempData["ErrorMessage"] = "Fine Id doesn't exists";
+                TempData["ErrorMessage"] = "Fine Id or Vehicle Number doesn't exists";
                 return RedirectToAction("IndexFine", "Landing"); // Redirect to another action or view
             }
 
